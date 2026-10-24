@@ -3,3 +3,5 @@ dist/
 .env
 .expo/
 *.log
+backend/uploads/*
+!backend/uploads/.gitkeep
