@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "MiniLedger",
+    "slug": "miniledger",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": { "backgroundColor": "#ffffff" },
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "MiniLedger uses the camera to let you photograph a receipt for a loan entry.",
+        "NSPhotoLibraryUsageDescription": "MiniLedger needs access to your photos to attach a receipt image to a loan entry."
+      }
+    },
+    "android": {
+      "permissions": ["CAMERA", "READ_MEDIA_IMAGES"]
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "MiniLedger needs access to your photos to attach a receipt image to a loan entry.",
+          "cameraPermission": "MiniLedger uses the camera to let you photograph a receipt for a loan entry."
+        }
+      ]
+    ]
+  }
+}

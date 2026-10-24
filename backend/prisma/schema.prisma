@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  phone     String   @unique
+  createdAt DateTime @default(now())
+  loans     Loan[]
+}
+
+model Loan {
+  id         String    @id @default(uuid())
+  userId     String
+  user       User      @relation(fields: [userId], references: [id])
+  friendName String
+  amount     Float
+  dueDate    DateTime
+  repaid     Boolean   @default(false)
+  repaidAt   DateTime?
+  receiptUrl String?
+  createdAt  DateTime  @default(now())
+}
+
+// OTPs are short-lived on purpose — no reason to keep them in Postgres
+// permanently, but a table keeps this restart-safe and easy to inspect
+// during development/demo, unlike an in-memory Map.
+model Otp {
+  id        String   @id @default(uuid())
+  phone     String
+  code      String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
